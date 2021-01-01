@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import CreateTodo from "../components/CreateTodo";
 import TitleAndDesc from "../components/TitleAndDesc";
-import Todo from "../components/Todo";
+import Todos from "../components/Todos";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect } from "react";
+import { withAuthentication } from "../auth/requirePageAuth";
 
-const index = () => {
-  const { token } = useSelector((state) => state.auth);
+export const getServerSideProps = withAuthentication(async ({ token }) => {
+  return {
+    props: {
+      tokenFromAuth: token,
+    },
+  };
+});
+
+const index = ({ tokenFromAuth }) => {
+  const { token, user } = useSelector((state) => state.auth);
 
   const [todos, setTodos] = useState([]);
 
@@ -23,13 +32,16 @@ const index = () => {
   }, []);
 
   return (
-    <>
-      <TitleAndDesc title="Todos by lukasweidich" desc="" />
-      <CreateTodo />
-      {todos.map((todo, i) => (
-        <Todo {...todo} key={i} />
-      ))}
-    </>
+    <div>
+      {user && (
+        <>
+          <TitleAndDesc title="Todos by lukasweidich" desc="" />
+          <CreateTodo />
+          <hr className="my-4" />
+          <Todos todos={todos} />
+        </>
+      )}
+    </div>
   );
 };
 

@@ -8,21 +8,18 @@ import "../styles/bootstrap.min.css";
 import store from "../store";
 import { Container } from "react-bootstrap";
 import { Provider } from "react-redux";
-import RedirectWrapper from "../components/RedirectWrapper";
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <SEO />
-      <RedirectWrapper>
-        <Header />
-        <main>
-          <Container>
-            <Component {...pageProps} />
-          </Container>
-        </main>
-        <Footer />
-      </RedirectWrapper>
+      <Header />
+      <main>
+        <Container>
+          <Component {...pageProps} />
+        </Container>
+      </main>
+      <Footer />
     </Provider>
   );
 }

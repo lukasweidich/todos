@@ -1,11 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { withAuthentication } from "../auth/requirePageAuth";
+
+export const getServerSideProps = withAuthentication(async ({ token }) => {
+  return {
+    props: {},
+  };
+});
 
 const me = () => {
-  const { token, user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   return (
     <div>
-      <h1>Hello {user?.firstName}</h1>
+      {user && <h1>Hello {user?.firstName}, let's get things done!</h1>}
     </div>
   );
 };

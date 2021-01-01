@@ -20,37 +20,40 @@ const CreateTodo = () => {
   };
 
   return (
-    <Form onSubmit={(e) => handleCreateTodo({ e, title, body, done })}>
-      <Form.Group>
-        <Form.Label>Title</Form.Label>
-        <Form.Control
-          type="title"
-          placeholder="Enter Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Body</Form.Label>
-        <Form.Control
-          type="body"
-          placeholder="Enter Body"
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Check
-          type="checkbox"
-          label="Done"
-          value={done}
-          onChange={() => setDone(!done)}
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Create Todo
-      </Button>
-    </Form>
+    <>
+      <h2>Create a Todo</h2>
+      <Form onSubmit={(e) => handleCreateTodo({ e, title, body, done })}>
+        <Form.Group>
+          <Form.Label>Title</Form.Label>
+          <Form.Control
+            type="title"
+            placeholder="Enter Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Body</Form.Label>
+          <Form.Control
+            type="body"
+            placeholder="Enter Body"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Check
+            type="checkbox"
+            label="Done"
+            value={done}
+            onChange={() => setDone(!done)}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Create Todo
+        </Button>
+      </Form>
+    </>
   );
 };
 

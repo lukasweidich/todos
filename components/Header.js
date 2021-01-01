@@ -12,40 +12,45 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logOut());
-    router.push("/");
+    router.reload();
   };
 
   return (
-    <header>
-      <Navbar expand="lg" collapseOnSelect>
-        <Container>
-          <Link href="/" passHref>
-            <Navbar.Brand>Todos by lukasweidich</Navbar.Brand>
-          </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="navbar">
-            <Nav className="ml-auto">
-              {user ? (
-                <NavDropdown title={user.firstName}>
-                  <NavDropdown.Item>
-                    <Link href="/me" passHref>
-                      <Nav.Link>Account</Nav.Link>
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
-              ) : (
-                <Link href="/login" passHref>
-                  <Nav.Link>Log In</Nav.Link>
-                </Link>
-              )}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </header>
+    <>
+      <header>
+        <Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
+          <Container>
+            <Link href="/" passHref>
+              <Navbar.Brand>Todos</Navbar.Brand>
+            </Link>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="navbar">
+              <Nav className="ml-auto">
+                {user ? (
+                  <NavDropdown title={user.firstName ?? ""} id="dropdown">
+                    <NavDropdown.Item>
+                      <Link href="/me" passHref>
+                        Account
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      <Link href="#" passHref>
+                        Logout
+                      </Link>
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                ) : (
+                  <Link href="/login" passHref>
+                    <Nav.Link>Log In</Nav.Link>
+                  </Link>
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </header>
+      <hr className="my-2" />
+    </>
   );
 };
 
