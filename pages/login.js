@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { logIn } from "../actions/authActions";
 import { useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
+import Link from "next/link";
 
 const login = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,12 @@ const login = () => {
       </Form.Group>
       <Button variant="primary" type="submit">
         Log In
-      </Button>
+      </Button>{" "}
+      or create a new account{" "}
+      <Link href="/signup">
+        <a>here</a>
+      </Link>
+      .
     </Form>
   );
 };

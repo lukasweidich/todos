@@ -17,7 +17,7 @@ export default async (req, res) => {
             const { _id, firstName, lastName, email } = user;
             res.statusCode = 200;
             res.json({
-              user: { firstName, lastName, email },
+              user: { firstName, lastName, email, id: _id },
               token: generateToken(_id),
             });
           } else {

@@ -34,15 +34,20 @@ const Header = () => {
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item onClick={logoutHandler}>
-                      <Link href="#" passHref>
+                      <Link href="" passHref>
                         Logout
                       </Link>
                     </NavDropdown.Item>
                   </NavDropdown>
                 ) : (
-                  <Link href="/login" passHref>
-                    <Nav.Link>Log In</Nav.Link>
-                  </Link>
+                  <>
+                    <Link href="/signup" passHref>
+                      <Nav.Link>Create Account</Nav.Link>
+                    </Link>
+                    <Link href="/login" passHref>
+                      <Nav.Link>Log In</Nav.Link>
+                    </Link>
+                  </>
                 )}
               </Nav>
             </Navbar.Collapse>
