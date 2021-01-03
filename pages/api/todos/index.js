@@ -40,8 +40,20 @@ export default async (req, res) => {
             });
           }
           break;
+        case "DELETE":
+          try {
+            await Todo.deleteMany({ user });
+            res.statusCode = 204;
+            res.end();
+          } catch (err) {
+            res.statusCode = 409;
+            res.json({
+              error: `Could not delete all todos from user. ${err}`,
+            });
+          }
+          break;
         default:
-          res.setHeader("Allow", ["GET", "POST"]);
+          res.setHeader("Allow", ["GET", "POST", "DELETE"]);
           res.status(405).send(`Method ${method} not allowed`);
           break;
       }

@@ -46,6 +46,9 @@ const me = () => {
   };
 
   const deleteAccountHandler = async () => {
+    await axios.delete(`/api/todos`, {
+      headers: { authorization: `Bearer ${token}` },
+    });
     await axios.delete(`/api/users/${id}`, {
       headers: { authorization: `Bearer ${token}` },
     });
